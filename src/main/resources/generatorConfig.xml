@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <properties resource="application.properties"/>
+
+    <classPathEntry location="C:\Users\mekyw\.m2\repository\mysql\mysql-connector-java\8.0.16\mysql-connector-java-8.0.16.jar"/>
+
+    <context id="robot" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="${spring.datasource.driver-class-name}" connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}" password="${spring.datasource.password}"/>
+
+        <javaModelGenerator targetPackage="com.fourthis4.spider.robot.generate.model"
+                            targetProject="./src/main/java"/>
+
+        <sqlMapGenerator targetPackage="mapper.generate"
+                         targetProject="./src/main/resources"/>
+
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.fourthis4.spider.robot.generate.mapper"
+                             targetProject="./src/main/java"/>
+
+        <table tableName="stock_price_detail" domainObjectName="StockPriceDetail"/>
+
+    </context>
+</generatorConfiguration>

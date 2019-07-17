@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fourthis4.spider.robot.generate.mapper.StockPriceDetailMapper">
+  <resultMap id="BaseResultMap" type="com.fourthis4.spider.robot.generate.model.StockPriceDetail">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="stock_code" jdbcType="VARCHAR" property="stockCode" />
+    <result column="bid1" jdbcType="INTEGER" property="bid1" />
+    <result column="bidvol1" jdbcType="INTEGER" property="bidvol1" />
+    <result column="bid2" jdbcType="INTEGER" property="bid2" />
+    <result column="bidvol2" jdbcType="INTEGER" property="bidvol2" />
+    <result column="bid3" jdbcType="INTEGER" property="bid3" />
+    <result column="bidvol3" jdbcType="INTEGER" property="bidvol3" />
+    <result column="bid4" jdbcType="INTEGER" property="bid4" />
+    <result column="bidvol4" jdbcType="INTEGER" property="bidvol4" />
+    <result column="bid5" jdbcType="INTEGER" property="bid5" />
+    <result column="bidvol5" jdbcType="INTEGER" property="bidvol5" />
+    <result column="ask1" jdbcType="INTEGER" property="ask1" />
+    <result column="askvol1" jdbcType="INTEGER" property="askvol1" />
+    <result column="ask2" jdbcType="INTEGER" property="ask2" />
+    <result column="askvol2" jdbcType="INTEGER" property="askvol2" />
+    <result column="ask3" jdbcType="INTEGER" property="ask3" />
+    <result column="askvol3" jdbcType="INTEGER" property="askvol3" />
+    <result column="ask4" jdbcType="INTEGER" property="ask4" />
+    <result column="askvol4" jdbcType="INTEGER" property="askvol4" />
+    <result column="ask5" jdbcType="INTEGER" property="ask5" />
+    <result column="askvol5" jdbcType="INTEGER" property="askvol5" />
+    <result column="date_timestamp" jdbcType="BIGINT" property="dateTimestamp" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, stock_code, bid1, bidvol1, bid2, bidvol2, bid3, bidvol3, bid4, bidvol4, bid5, 
+    bidvol5, ask1, askvol1, ask2, askvol2, ask3, askvol3, ask4, askvol4, ask5, askvol5, 
+    date_timestamp
+  </sql>
+  <select id="selectByExample" parameterType="com.fourthis4.spider.robot.generate.model.StockPriceDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from stock_price_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from stock_price_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from stock_price_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fourthis4.spider.robot.generate.model.StockPriceDetailExample">
+    delete from stock_price_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fourthis4.spider.robot.generate.model.StockPriceDetail">
+    insert into stock_price_detail (id, stock_code, bid1, 
+      bidvol1, bid2, bidvol2, 
+      bid3, bidvol3, bid4, 
+      bidvol4, bid5, bidvol5, 
+      ask1, askvol1, ask2, 
+      askvol2, ask3, askvol3, 
+      ask4, askvol4, ask5, 
+      askvol5, date_timestamp)
+    values (#{id,jdbcType=VARCHAR}, #{stockCode,jdbcType=VARCHAR}, #{bid1,jdbcType=INTEGER}, 
+      #{bidvol1,jdbcType=INTEGER}, #{bid2,jdbcType=INTEGER}, #{bidvol2,jdbcType=INTEGER}, 
+      #{bid3,jdbcType=INTEGER}, #{bidvol3,jdbcType=INTEGER}, #{bid4,jdbcType=INTEGER}, 
+      #{bidvol4,jdbcType=INTEGER}, #{bid5,jdbcType=INTEGER}, #{bidvol5,jdbcType=INTEGER}, 
+      #{ask1,jdbcType=INTEGER}, #{askvol1,jdbcType=INTEGER}, #{ask2,jdbcType=INTEGER}, 
+      #{askvol2,jdbcType=INTEGER}, #{ask3,jdbcType=INTEGER}, #{askvol3,jdbcType=INTEGER}, 
+      #{ask4,jdbcType=INTEGER}, #{askvol4,jdbcType=INTEGER}, #{ask5,jdbcType=INTEGER}, 
+      #{askvol5,jdbcType=INTEGER}, #{dateTimestamp,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fourthis4.spider.robot.generate.model.StockPriceDetail">
+    insert into stock_price_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="stockCode != null">
+        stock_code,
+      </if>
+      <if test="bid1 != null">
+        bid1,
+      </if>
+      <if test="bidvol1 != null">
+        bidvol1,
+      </if>
+      <if test="bid2 != null">
+        bid2,
+      </if>
+      <if test="bidvol2 != null">
+        bidvol2,
+      </if>
+      <if test="bid3 != null">
+        bid3,
+      </if>
+      <if test="bidvol3 != null">
+        bidvol3,
+      </if>
+      <if test="bid4 != null">
+        bid4,
+      </if>
+      <if test="bidvol4 != null">
+        bidvol4,
+      </if>
+      <if test="bid5 != null">
+        bid5,
+      </if>
+      <if test="bidvol5 != null">
+        bidvol5,
+      </if>
+      <if test="ask1 != null">
+        ask1,
+      </if>
+      <if test="askvol1 != null">
+        askvol1,
+      </if>
+      <if test="ask2 != null">
+        ask2,
+      </if>
+      <if test="askvol2 != null">
+        askvol2,
+      </if>
+      <if test="ask3 != null">
+        ask3,
+      </if>
+      <if test="askvol3 != null">
+        askvol3,
+      </if>
+      <if test="ask4 != null">
+        ask4,
+      </if>
+      <if test="askvol4 != null">
+        askvol4,
+      </if>
+      <if test="ask5 != null">
+        ask5,
+      </if>
+      <if test="askvol5 != null">
+        askvol5,
+      </if>
+      <if test="dateTimestamp != null">
+        date_timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="stockCode != null">
+        #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bid1 != null">
+        #{bid1,jdbcType=INTEGER},
+      </if>
+      <if test="bidvol1 != null">
+        #{bidvol1,jdbcType=INTEGER},
+      </if>
+      <if test="bid2 != null">
+        #{bid2,jdbcType=INTEGER},
+      </if>
+      <if test="bidvol2 != null">
+        #{bidvol2,jdbcType=INTEGER},
+      </if>
+      <if test="bid3 != null">
+        #{bid3,jdbcType=INTEGER},
+      </if>
+      <if test="bidvol3 != null">
+        #{bidvol3,jdbcType=INTEGER},
+      </if>
+      <if test="bid4 != null">
+        #{bid4,jdbcType=INTEGER},
+      </if>
+      <if test="bidvol4 != null">
+        #{bidvol4,jdbcType=INTEGER},
+      </if>
+      <if test="bid5 != null">
+        #{bid5,jdbcType=INTEGER},
+      </if>
+      <if test="bidvol5 != null">
+        #{bidvol5,jdbcType=INTEGER},
+      </if>
+      <if test="ask1 != null">
+        #{ask1,jdbcType=INTEGER},
+      </if>
+      <if test="askvol1 != null">
+        #{askvol1,jdbcType=INTEGER},
+      </if>
+      <if test="ask2 != null">
+        #{ask2,jdbcType=INTEGER},
+      </if>
+      <if test="askvol2 != null">
+        #{askvol2,jdbcType=INTEGER},
+      </if>
+      <if test="ask3 != null">
+        #{ask3,jdbcType=INTEGER},
+      </if>
+      <if test="askvol3 != null">
+        #{askvol3,jdbcType=INTEGER},
+      </if>
+      <if test="ask4 != null">
+        #{ask4,jdbcType=INTEGER},
+      </if>
+      <if test="askvol4 != null">
+        #{askvol4,jdbcType=INTEGER},
+      </if>
+      <if test="ask5 != null">
+        #{ask5,jdbcType=INTEGER},
+      </if>
+      <if test="askvol5 != null">
+        #{askvol5,jdbcType=INTEGER},
+      </if>
+      <if test="dateTimestamp != null">
+        #{dateTimestamp,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fourthis4.spider.robot.generate.model.StockPriceDetailExample" resultType="java.lang.Long">
+    select count(*) from stock_price_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update stock_price_detail
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stockCode != null">
+        stock_code = #{record.stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bid1 != null">
+        bid1 = #{record.bid1,jdbcType=INTEGER},
+      </if>
+      <if test="record.bidvol1 != null">
+        bidvol1 = #{record.bidvol1,jdbcType=INTEGER},
+      </if>
+      <if test="record.bid2 != null">
+        bid2 = #{record.bid2,jdbcType=INTEGER},
+      </if>
+      <if test="record.bidvol2 != null">
+        bidvol2 = #{record.bidvol2,jdbcType=INTEGER},
+      </if>
+      <if test="record.bid3 != null">
+        bid3 = #{record.bid3,jdbcType=INTEGER},
+      </if>
+      <if test="record.bidvol3 != null">
+        bidvol3 = #{record.bidvol3,jdbcType=INTEGER},
+      </if>
+      <if test="record.bid4 != null">
+        bid4 = #{record.bid4,jdbcType=INTEGER},
+      </if>
+      <if test="record.bidvol4 != null">
+        bidvol4 = #{record.bidvol4,jdbcType=INTEGER},
+      </if>
+      <if test="record.bid5 != null">
+        bid5 = #{record.bid5,jdbcType=INTEGER},
+      </if>
+      <if test="record.bidvol5 != null">
+        bidvol5 = #{record.bidvol5,jdbcType=INTEGER},
+      </if>
+      <if test="record.ask1 != null">
+        ask1 = #{record.ask1,jdbcType=INTEGER},
+      </if>
+      <if test="record.askvol1 != null">
+        askvol1 = #{record.askvol1,jdbcType=INTEGER},
+      </if>
+      <if test="record.ask2 != null">
+        ask2 = #{record.ask2,jdbcType=INTEGER},
+      </if>
+      <if test="record.askvol2 != null">
+        askvol2 = #{record.askvol2,jdbcType=INTEGER},
+      </if>
+      <if test="record.ask3 != null">
+        ask3 = #{record.ask3,jdbcType=INTEGER},
+      </if>
+      <if test="record.askvol3 != null">
+        askvol3 = #{record.askvol3,jdbcType=INTEGER},
+      </if>
+      <if test="record.ask4 != null">
+        ask4 = #{record.ask4,jdbcType=INTEGER},
+      </if>
+      <if test="record.askvol4 != null">
+        askvol4 = #{record.askvol4,jdbcType=INTEGER},
+      </if>
+      <if test="record.ask5 != null">
+        ask5 = #{record.ask5,jdbcType=INTEGER},
+      </if>
+      <if test="record.askvol5 != null">
+        askvol5 = #{record.askvol5,jdbcType=INTEGER},
+      </if>
+      <if test="record.dateTimestamp != null">
+        date_timestamp = #{record.dateTimestamp,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update stock_price_detail
+    set id = #{record.id,jdbcType=VARCHAR},
+      stock_code = #{record.stockCode,jdbcType=VARCHAR},
+      bid1 = #{record.bid1,jdbcType=INTEGER},
+      bidvol1 = #{record.bidvol1,jdbcType=INTEGER},
+      bid2 = #{record.bid2,jdbcType=INTEGER},
+      bidvol2 = #{record.bidvol2,jdbcType=INTEGER},
+      bid3 = #{record.bid3,jdbcType=INTEGER},
+      bidvol3 = #{record.bidvol3,jdbcType=INTEGER},
+      bid4 = #{record.bid4,jdbcType=INTEGER},
+      bidvol4 = #{record.bidvol4,jdbcType=INTEGER},
+      bid5 = #{record.bid5,jdbcType=INTEGER},
+      bidvol5 = #{record.bidvol5,jdbcType=INTEGER},
+      ask1 = #{record.ask1,jdbcType=INTEGER},
+      askvol1 = #{record.askvol1,jdbcType=INTEGER},
+      ask2 = #{record.ask2,jdbcType=INTEGER},
+      askvol2 = #{record.askvol2,jdbcType=INTEGER},
+      ask3 = #{record.ask3,jdbcType=INTEGER},
+      askvol3 = #{record.askvol3,jdbcType=INTEGER},
+      ask4 = #{record.ask4,jdbcType=INTEGER},
+      askvol4 = #{record.askvol4,jdbcType=INTEGER},
+      ask5 = #{record.ask5,jdbcType=INTEGER},
+      askvol5 = #{record.askvol5,jdbcType=INTEGER},
+      date_timestamp = #{record.dateTimestamp,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fourthis4.spider.robot.generate.model.StockPriceDetail">
+    update stock_price_detail
+    <set>
+      <if test="stockCode != null">
+        stock_code = #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bid1 != null">
+        bid1 = #{bid1,jdbcType=INTEGER},
+      </if>
+      <if test="bidvol1 != null">
+        bidvol1 = #{bidvol1,jdbcType=INTEGER},
+      </if>
+      <if test="bid2 != null">
+        bid2 = #{bid2,jdbcType=INTEGER},
+      </if>
+      <if test="bidvol2 != null">
+        bidvol2 = #{bidvol2,jdbcType=INTEGER},
+      </if>
+      <if test="bid3 != null">
+        bid3 = #{bid3,jdbcType=INTEGER},
+      </if>
+      <if test="bidvol3 != null">
+        bidvol3 = #{bidvol3,jdbcType=INTEGER},
+      </if>
+      <if test="bid4 != null">
+        bid4 = #{bid4,jdbcType=INTEGER},
+      </if>
+      <if test="bidvol4 != null">
+        bidvol4 = #{bidvol4,jdbcType=INTEGER},
+      </if>
+      <if test="bid5 != null">
+        bid5 = #{bid5,jdbcType=INTEGER},
+      </if>
+      <if test="bidvol5 != null">
+        bidvol5 = #{bidvol5,jdbcType=INTEGER},
+      </if>
+      <if test="ask1 != null">
+        ask1 = #{ask1,jdbcType=INTEGER},
+      </if>
+      <if test="askvol1 != null">
+        askvol1 = #{askvol1,jdbcType=INTEGER},
+      </if>
+      <if test="ask2 != null">
+        ask2 = #{ask2,jdbcType=INTEGER},
+      </if>
+      <if test="askvol2 != null">
+        askvol2 = #{askvol2,jdbcType=INTEGER},
+      </if>
+      <if test="ask3 != null">
+        ask3 = #{ask3,jdbcType=INTEGER},
+      </if>
+      <if test="askvol3 != null">
+        askvol3 = #{askvol3,jdbcType=INTEGER},
+      </if>
+      <if test="ask4 != null">
+        ask4 = #{ask4,jdbcType=INTEGER},
+      </if>
+      <if test="askvol4 != null">
+        askvol4 = #{askvol4,jdbcType=INTEGER},
+      </if>
+      <if test="ask5 != null">
+        ask5 = #{ask5,jdbcType=INTEGER},
+      </if>
+      <if test="askvol5 != null">
+        askvol5 = #{askvol5,jdbcType=INTEGER},
+      </if>
+      <if test="dateTimestamp != null">
+        date_timestamp = #{dateTimestamp,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fourthis4.spider.robot.generate.model.StockPriceDetail">
+    update stock_price_detail
+    set stock_code = #{stockCode,jdbcType=VARCHAR},
+      bid1 = #{bid1,jdbcType=INTEGER},
+      bidvol1 = #{bidvol1,jdbcType=INTEGER},
+      bid2 = #{bid2,jdbcType=INTEGER},
+      bidvol2 = #{bidvol2,jdbcType=INTEGER},
+      bid3 = #{bid3,jdbcType=INTEGER},
+      bidvol3 = #{bidvol3,jdbcType=INTEGER},
+      bid4 = #{bid4,jdbcType=INTEGER},
+      bidvol4 = #{bidvol4,jdbcType=INTEGER},
+      bid5 = #{bid5,jdbcType=INTEGER},
+      bidvol5 = #{bidvol5,jdbcType=INTEGER},
+      ask1 = #{ask1,jdbcType=INTEGER},
+      askvol1 = #{askvol1,jdbcType=INTEGER},
+      ask2 = #{ask2,jdbcType=INTEGER},
+      askvol2 = #{askvol2,jdbcType=INTEGER},
+      ask3 = #{ask3,jdbcType=INTEGER},
+      askvol3 = #{askvol3,jdbcType=INTEGER},
+      ask4 = #{ask4,jdbcType=INTEGER},
+      askvol4 = #{askvol4,jdbcType=INTEGER},
+      ask5 = #{ask5,jdbcType=INTEGER},
+      askvol5 = #{askvol5,jdbcType=INTEGER},
+      date_timestamp = #{dateTimestamp,jdbcType=BIGINT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
