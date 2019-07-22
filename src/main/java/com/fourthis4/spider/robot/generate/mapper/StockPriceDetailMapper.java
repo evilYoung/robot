@@ -6,25 +6,25 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface StockPriceDetailMapper {
-  long countByExample(StockPriceDetailExample example);
+    long countByExample(StockPriceDetailExample example);
 
-  int deleteByExample(StockPriceDetailExample example);
+    int deleteByExample(StockPriceDetailExample example);
 
-  int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(String id);
 
-  int insert(StockPriceDetail record);
+    int insert(StockPriceDetail record);
 
-  int insertSelective(StockPriceDetail record);
+    int insertSelective(StockPriceDetail record);
 
-  List<StockPriceDetail> selectByExample(StockPriceDetailExample example);
+    List<StockPriceDetail> selectByExample(StockPriceDetailExample example);
 
-  StockPriceDetail selectByPrimaryKey(String id);
+    StockPriceDetail selectByPrimaryKey(String id);
 
-  int updateByExampleSelective(@Param("record") StockPriceDetail record, @Param("example") StockPriceDetailExample example);
+    int updateByExampleSelective(@Param("record") StockPriceDetail record, @Param("example") StockPriceDetailExample example);
 
-  int updateByExample(@Param("record") StockPriceDetail record, @Param("example") StockPriceDetailExample example);
+    int updateByExample(@Param("record") StockPriceDetail record, @Param("example") StockPriceDetailExample example);
 
-  int updateByPrimaryKeySelective(StockPriceDetail record);
+    int updateByPrimaryKeySelective(StockPriceDetail record);
 
-  int updateByPrimaryKey(StockPriceDetail record);
+    int updateByPrimaryKey(StockPriceDetail record);
 }

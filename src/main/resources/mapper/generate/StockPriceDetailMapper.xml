@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.fourthis4.spider.robot.generate.model.StockPriceDetail">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="stock_code" jdbcType="VARCHAR" property="stockCode" />
+    <result column="current_price" jdbcType="INTEGER" property="currentPrice" />
     <result column="bid1" jdbcType="INTEGER" property="bid1" />
     <result column="bidvol1" jdbcType="INTEGER" property="bidvol1" />
     <result column="bid2" jdbcType="INTEGER" property="bid2" />
@@ -85,9 +86,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, stock_code, bid1, bidvol1, bid2, bidvol2, bid3, bidvol3, bid4, bidvol4, bid5, 
-    bidvol5, ask1, askvol1, ask2, askvol2, ask3, askvol3, ask4, askvol4, ask5, askvol5, 
-    date_timestamp
+    id, stock_code, current_price, bid1, bidvol1, bid2, bidvol2, bid3, bidvol3, bid4, 
+    bidvol4, bid5, bidvol5, ask1, askvol1, ask2, askvol2, ask3, askvol3, ask4, askvol4, 
+    ask5, askvol5, date_timestamp
   </sql>
   <select id="selectByExample" parameterType="com.fourthis4.spider.robot.generate.model.StockPriceDetailExample" resultMap="BaseResultMap">
     select
@@ -120,22 +121,24 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.fourthis4.spider.robot.generate.model.StockPriceDetail">
-    insert into stock_price_detail (id, stock_code, bid1, 
-      bidvol1, bid2, bidvol2, 
-      bid3, bidvol3, bid4, 
-      bidvol4, bid5, bidvol5, 
-      ask1, askvol1, ask2, 
-      askvol2, ask3, askvol3, 
-      ask4, askvol4, ask5, 
-      askvol5, date_timestamp)
-    values (#{id,jdbcType=VARCHAR}, #{stockCode,jdbcType=VARCHAR}, #{bid1,jdbcType=INTEGER}, 
-      #{bidvol1,jdbcType=INTEGER}, #{bid2,jdbcType=INTEGER}, #{bidvol2,jdbcType=INTEGER}, 
-      #{bid3,jdbcType=INTEGER}, #{bidvol3,jdbcType=INTEGER}, #{bid4,jdbcType=INTEGER}, 
-      #{bidvol4,jdbcType=INTEGER}, #{bid5,jdbcType=INTEGER}, #{bidvol5,jdbcType=INTEGER}, 
-      #{ask1,jdbcType=INTEGER}, #{askvol1,jdbcType=INTEGER}, #{ask2,jdbcType=INTEGER}, 
-      #{askvol2,jdbcType=INTEGER}, #{ask3,jdbcType=INTEGER}, #{askvol3,jdbcType=INTEGER}, 
-      #{ask4,jdbcType=INTEGER}, #{askvol4,jdbcType=INTEGER}, #{ask5,jdbcType=INTEGER}, 
-      #{askvol5,jdbcType=INTEGER}, #{dateTimestamp,jdbcType=BIGINT})
+    insert into stock_price_detail (id, stock_code, current_price, 
+      bid1, bidvol1, bid2, 
+      bidvol2, bid3, bidvol3, 
+      bid4, bidvol4, bid5, 
+      bidvol5, ask1, askvol1, 
+      ask2, askvol2, ask3, 
+      askvol3, ask4, askvol4, 
+      ask5, askvol5, date_timestamp
+      )
+    values (#{id,jdbcType=VARCHAR}, #{stockCode,jdbcType=VARCHAR}, #{currentPrice,jdbcType=INTEGER}, 
+      #{bid1,jdbcType=INTEGER}, #{bidvol1,jdbcType=INTEGER}, #{bid2,jdbcType=INTEGER}, 
+      #{bidvol2,jdbcType=INTEGER}, #{bid3,jdbcType=INTEGER}, #{bidvol3,jdbcType=INTEGER}, 
+      #{bid4,jdbcType=INTEGER}, #{bidvol4,jdbcType=INTEGER}, #{bid5,jdbcType=INTEGER}, 
+      #{bidvol5,jdbcType=INTEGER}, #{ask1,jdbcType=INTEGER}, #{askvol1,jdbcType=INTEGER}, 
+      #{ask2,jdbcType=INTEGER}, #{askvol2,jdbcType=INTEGER}, #{ask3,jdbcType=INTEGER}, 
+      #{askvol3,jdbcType=INTEGER}, #{ask4,jdbcType=INTEGER}, #{askvol4,jdbcType=INTEGER}, 
+      #{ask5,jdbcType=INTEGER}, #{askvol5,jdbcType=INTEGER}, #{dateTimestamp,jdbcType=BIGINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.fourthis4.spider.robot.generate.model.StockPriceDetail">
     insert into stock_price_detail
@@ -145,6 +148,9 @@
       </if>
       <if test="stockCode != null">
         stock_code,
+      </if>
+      <if test="currentPrice != null">
+        current_price,
       </if>
       <if test="bid1 != null">
         bid1,
@@ -216,6 +222,9 @@
       </if>
       <if test="stockCode != null">
         #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="currentPrice != null">
+        #{currentPrice,jdbcType=INTEGER},
       </if>
       <if test="bid1 != null">
         #{bid1,jdbcType=INTEGER},
@@ -297,6 +306,9 @@
       <if test="record.stockCode != null">
         stock_code = #{record.stockCode,jdbcType=VARCHAR},
       </if>
+      <if test="record.currentPrice != null">
+        current_price = #{record.currentPrice,jdbcType=INTEGER},
+      </if>
       <if test="record.bid1 != null">
         bid1 = #{record.bid1,jdbcType=INTEGER},
       </if>
@@ -369,6 +381,7 @@
     update stock_price_detail
     set id = #{record.id,jdbcType=VARCHAR},
       stock_code = #{record.stockCode,jdbcType=VARCHAR},
+      current_price = #{record.currentPrice,jdbcType=INTEGER},
       bid1 = #{record.bid1,jdbcType=INTEGER},
       bidvol1 = #{record.bidvol1,jdbcType=INTEGER},
       bid2 = #{record.bid2,jdbcType=INTEGER},
@@ -399,6 +412,9 @@
     <set>
       <if test="stockCode != null">
         stock_code = #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="currentPrice != null">
+        current_price = #{currentPrice,jdbcType=INTEGER},
       </if>
       <if test="bid1 != null">
         bid1 = #{bid1,jdbcType=INTEGER},
@@ -469,6 +485,7 @@
   <update id="updateByPrimaryKey" parameterType="com.fourthis4.spider.robot.generate.model.StockPriceDetail">
     update stock_price_detail
     set stock_code = #{stockCode,jdbcType=VARCHAR},
+      current_price = #{currentPrice,jdbcType=INTEGER},
       bid1 = #{bid1,jdbcType=INTEGER},
       bidvol1 = #{bidvol1,jdbcType=INTEGER},
       bid2 = #{bid2,jdbcType=INTEGER},
